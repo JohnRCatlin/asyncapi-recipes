@@ -1,0 +1,300 @@
+#--------------------------------------------------------------------------
+# Copyright 2021 asyncapi.engineer
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#--------------------------------------------------------------------------
+asyncapi: 2.0.0
+
+defaultContentType: application/json
+
+info:
+  title: A Fabrics Pattern - Recipe
+  version: 0.0.0
+  description: An AsyncAPI recipe for ..
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0'
+
+servers:
+
+  enitityFabric:
+    url: 'demo.entityFabric.example.com:{port}'
+    protocol: mqtt
+    description: Server description...
+    variables:
+      port:
+        description: Port description...
+        default: '1883'
+        enum:
+          - '1883'
+          - '8883'
+    security:
+      - apiKey: []
+      - supportedOauthFlows:
+          - publishEntities
+          - subscribeToEntities
+      - openIdConnectWellKnown: []
+      
+  eventFabric:
+    url: 'demo.eventFabric.example.com:{port}'
+    protocol: mqtt
+    description: Server description...
+    variables:
+      port:
+        description: Port description ...
+        default: '1883'
+        enum:
+          - '1883'
+          - '8883'
+    security:
+      - apiKey: []
+      - supportedOauthFlows:
+          - publishEvents
+          - subscribeToEvents
+      - openIdConnectWellKnown: []
+      
+  commandFabric:
+    url: 'demo.commandFabric.example.com:{port}'
+    protocol: mqtt
+    description: Server description...
+    variables:
+      port:
+        description: Port description ...
+        default: '1883'
+        enum:
+          - '1883'
+          - '8883'
+    security:
+      - apiKey: []
+      - supportedOauthFlows:
+          - publishCommands
+          - subscribeToCommands
+      - openIdConnectWellKnown: []
+
+channels:
+
+  entities/publish/domain-x/entity-x/1/0/:
+    description: Description of this entity channel here...
+    publish:
+      description: Description of this entity publish operation here...
+      summary: Summary of this entity publish operation here...
+      operationId: publishEntity
+      traits:
+        - $ref: '#/components/operationTraits/kafka'
+      message:
+        $ref: '#/components/messages/commandMessage'
+
+  entities/subscribe/domain-x/entity-x/1/0/:
+    description: Description of this entity channel here...
+    subscribe:
+      description: Description of this entity subscribe operation here...
+      summary: Summary of this entity subscribe operation here ...
+      operationId: subscribeEntity
+      traits:
+        - $ref: '#/components/operationTraits/kafka'
+      message:
+        $ref: '#/components/messages/commandMessage'
+
+  commands/publish/domain-x/command-x/1/0/:
+    description: Description of this command channel here...
+    subscribe:
+      description: Description of this command publish operation here...
+      summary: Summary of this command publish operation here...
+      operationId: publishCommand
+      traits:
+        - $ref: '#/components/operationTraits/kafka'
+      message:
+        $ref: '#/components/messages/commandMessage'
+
+  commands/subscribe/domain-x/command-x/1/0/:
+    description: Description of this command channel here...
+    subscribe:
+      description: Description of this command subscribe operation here...
+      summary: Summary of this command subscribe operation here...
+      operationId: subscribeCommand
+      traits:
+        - $ref: '#/components/operationTraits/kafka'
+      message:
+        $ref: '#/components/messages/commandMessage'
+
+  events/publish/domain-x/event-x/1/0/:
+    description: Description of this EVENT publish channel...
+    subscribe:
+      description: Description of this EVENT publish operation here...
+      summary: Summary of this EVENT publish operation here...
+      operationId: publishEvent
+      traits:
+        - $ref: '#/components/operationTraits/kafka'
+      message:
+        $ref: '#/components/messages/commandMessage'
+  
+  events/subscribe/domain-x/event-x/1/0/:
+    description: Description of this EVENT subscribe channel here...
+    subscribe:
+      description: Description of this EVENT subscribe operation here...
+      summary: Summary of this EVENT subscribe operation here...
+      operationId: subscribeEvent
+      traits:
+        - $ref: '#/components/operationTraits/kafka'
+      message:
+        $ref: '#/components/messages/commandMessage'
+
+components:
+  messages:
+    entityMessage:
+      name: entityMessage
+      title: Message Title here...
+      summary: Summary of this message here..
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: "#/components/schemas/lightMeasuredEvent"
+    commandMessage:
+      name: commandMessage
+      title: Message Title here...
+      summary: Summary of this message here..
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: "#/components/schemas/lightMeasuredEvent"
+    eventMessage:
+      name: eventMessage
+      title: Message Title here...
+      summary: Summary of this message here..
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: "#/components/schemas/lightMeasuredEvent"
+
+  schemas:
+    
+    lightMeasurementEntity:
+      type: object
+      properties:
+        lumens:
+          type: integer
+          minimum: 0
+          description: Light intensity measured in lumens.
+        sentAt:
+          $ref: "#/components/schemas/sentAt"
+    
+    lightMeasuredEvent:
+      type: object
+      properties:
+        lumens:
+          type: integer
+          minimum: 0
+          description: Light intensity measured in lumens.
+        sentAt:
+          $ref: "#/components/schemas/sentAt"
+    
+    turnOnOffCommand:
+      type: object
+      properties:
+        command:
+          type: string
+          enum:
+            - on
+            - off
+          description: Whether to turn on or off the light.
+        sentAt:
+          $ref: "#/components/schemas/sentAt"
+    
+    dimLightCommand:
+      type: object
+      properties:
+        percentage:
+          type: integer
+          description: Percentage to which the light should be dimmed to.
+          minimum: 0
+          maximum: 100
+        sentAt:
+          $ref: "#/components/schemas/sentAt"
+    
+    sentAt:
+      type: string
+      format: date-time
+      description: Date and time when the message was sent.
+
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: user
+      description: Provide your API key as the user and leave the password empty.
+    supportedOauthFlows:
+      type: oauth2
+      description: Flows to support OAuth 2.0
+      flows:
+        implicit:
+          authorizationUrl: 'https://authserver.example/auth'
+          scopes:
+            'streetlights:on': Ability to switch lights on
+            'streetlights:off': Ability to switch lights off
+            'streetlights:dim': Ability to dim the lights
+        password:
+          tokenUrl: 'https://authserver.example/token'
+          scopes:
+            'streetlights:on': Ability to switch lights on
+            'streetlights:off': Ability to switch lights off
+            'streetlights:dim': Ability to dim the lights
+        clientCredentials:
+          tokenUrl: 'https://authserver.example/token'
+          scopes:
+            'streetlights:on': Ability to switch lights on
+            'streetlights:off': Ability to switch lights off
+            'streetlights:dim': Ability to dim the lights
+        authorizationCode:
+          authorizationUrl: 'https://authserver.example/auth'
+          tokenUrl: 'https://authserver.example/token'
+          refreshUrl: 'https://authserver.example/refresh'
+          scopes:
+            'streetlights:on': Ability to switch lights on
+            'streetlights:off': Ability to switch lights off
+            'streetlights:dim': Ability to dim the lights
+    openIdConnectWellKnown:
+      type: openIdConnect
+      openIdConnectUrl: 'https://authserver.example/.well-known'
+
+  messageTraits:
+    commonHeaders:
+      headers:
+        type: object
+        properties:
+          my-app-header:
+            type: integer
+            minimum: 0
+            maximum: 100
+
+  operationTraits:
+    kafka:
+      bindings:
+        kafka:
+          clientId: my-app-id
+         
+  messageBindings:
+    kafka:
+       key:
+          type: string
+          enum: ['myKey']
+       bindingVersion: '0.1.0'
+
+tags:
+  - name: Catalog
+    description: Recipes
+  - name: Type
+    description: Recipe
+  - name: Access
+    description: Public
+  - name: License
+    description: Apache 2.0
+ 

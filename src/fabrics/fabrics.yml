@@ -107,7 +107,7 @@ channels:
 
   commands/publish/domain-x/command-x/1/0/:
     description: Description of this command channel here...
-    subscribe:
+    publish:
       description: Description of this command publish operation here...
       summary: Summary of this command publish operation here...
       operationId: publishCommand
@@ -129,7 +129,7 @@ channels:
 
   events/publish/domain-x/event-x/1/0/:
     description: Description of this EVENT publish channel...
-    subscribe:
+    publish:
       description: Description of this EVENT publish operation here...
       summary: Summary of this EVENT publish operation here...
       operationId: publishEvent
@@ -137,7 +137,7 @@ channels:
         - $ref: '#/components/operationTraits/kafka'
       message:
         $ref: '#/components/messages/commandMessage'
-  
+
   events/subscribe/domain-x/event-x/1/0/:
     description: Description of this EVENT subscribe channel here...
     subscribe:
@@ -177,7 +177,7 @@ components:
         $ref: "#/components/schemas/lightMeasuredEvent"
 
   schemas:
-    
+
     lightMeasurementEntity:
       type: object
       properties:
@@ -187,7 +187,7 @@ components:
           description: Light intensity measured in lumens.
         sentAt:
           $ref: "#/components/schemas/sentAt"
-    
+
     lightMeasuredEvent:
       type: object
       properties:
@@ -197,7 +197,7 @@ components:
           description: Light intensity measured in lumens.
         sentAt:
           $ref: "#/components/schemas/sentAt"
-    
+
     turnOnOffCommand:
       type: object
       properties:
@@ -209,7 +209,7 @@ components:
           description: Whether to turn on or off the light.
         sentAt:
           $ref: "#/components/schemas/sentAt"
-    
+
     dimLightCommand:
       type: object
       properties:

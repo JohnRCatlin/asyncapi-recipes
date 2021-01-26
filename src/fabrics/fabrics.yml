@@ -280,6 +280,7 @@ components:
       bindings:
         kafka:
           clientId: my-app-id
+          bindingVersion: '0.1.0'
          
   messageBindings:
     kafka:

@@ -27,7 +27,7 @@ info:
 
 servers:
 
-  enitityFabric:
+  entityFabric:
     url: 'demo.entityFabric.example.com:{port}'
     protocol: mqtt
     description: Server description...

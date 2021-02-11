@@ -226,6 +226,155 @@ components:
       format: date-time
       description: Date and time when the message was sent.
 
+    typeCompendiumPayload:
+      name: typeCompendiumPayload
+      description: This is the typeCompendiumPayload description text.
+
+      type: object
+      properties:
+        aString:
+          description: 'Description here ...'
+          type: string
+          minLenght: 0
+          maxLength: 256
+        someStrings:
+          description: 'Description here ...'
+          type: array
+          items:
+            type: string
+            format: byte
+        aByteString:
+          description: 'Description here ...'
+          type: string
+          format: byte
+          minimum: 0
+        someByteStrings:
+          description: 'Description here ...'
+          type: array
+          items:
+            type: string
+            format: byte
+            minimum: 0
+        aBinaryString:
+          description: 'Description here ...'
+          type: string
+          format: binary
+          minimum: 0
+        someBinaryStrings:
+          description: 'Description here ...'
+          type: array
+          items:
+            type: string
+            format: binary
+            minimum: 0
+        aInteger:
+          description: 'Description here ...'
+          type: integer
+          format: int32
+          default: 50
+          minimum: -100
+          maximum: 100
+        someIntegers:
+          description: 'Description here ...'
+          type: array
+          items:
+            type: integer
+            format: int32
+            default: 50
+            minimum: -100
+            maximum: 100
+        aLong:
+          description: 'Description here ...'
+          type: integer
+          format: int64
+          minimum: 0
+        someLongs:
+          description: 'Description here ...'
+          type: array
+          items:
+            type: integer
+            format: int64
+            minimum: 0
+        aFloatNumber:
+          description: 'Description here ...'
+          type: number
+          format: float
+          minimum: 0
+        someFloatNumbers:
+          description: 'Description here ...'
+          type: array
+          items:
+            type: number
+            format: float
+            minimum: 0
+        aDoubleNumber:
+          description: 'Description here ...'
+          type: number
+          format: double
+          minimum: 0
+        someDoubleNumbers:
+          description: 'Description here ...'
+          type: array
+          items:
+            type: number
+            format: double
+            minimum: 0
+        aBoolean:
+          description: 'Description here ...'
+          type: boolean
+          minimum: 0
+        someBooleans:
+          description: 'Description here ...'
+          type: array
+          items:
+            type: boolean
+            minimum: 0
+        aDate:
+          description: 'Description here ...'
+          type: string
+          format: date
+          minimum: 0
+        someDates:
+          description: 'Description here ...'
+          type: array
+          items:
+            type: string
+            format: date
+            minimum: 0
+        aDateTime:
+          description: 'Description here ...'
+          type: string
+          format: dateTime
+          minimum: 0
+        someDateTimes:
+          description: 'Description here ...'
+          type: array
+          items:
+            type: string
+            format: dateTime
+            minimum: 0
+        aPassword:
+          description: 'Description here ...'
+          type: string
+          format: password
+          minimum: 0
+        somePasswords:
+          description: 'Description here ...'
+          type: array
+          items:
+            type: string
+            format: password
+            minimum: 0
+        aEnum:
+          type: string
+          description: 'Description here ...'
+          enum:
+          - one
+          - two
+          - three
+          - four
+
+
   securitySchemes:
     apiKey:
       type: apiKey

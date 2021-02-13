@@ -404,8 +404,8 @@ components:
           exclusiveMaximum: 100
           default: 0
       required: 
-        aInteger
-        anotherInteger
+        - aInteger
+        - anotherInteger
 
   securitySchemes:
     apiKey:

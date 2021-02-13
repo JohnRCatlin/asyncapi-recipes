@@ -228,8 +228,8 @@ components:
 
     typeCompendiumPayload:
       name: typeCompendiumPayload
-      description: This is the typeCompendiumPayload description text.
-
+      description: This is payload is used to demonstrate a range property types.
+      
       type: object
       properties:
         aString:
@@ -374,6 +374,17 @@ components:
           - three
           - four
 
+    validationCompondiumPayload:
+      name: validationCompondiumPayload
+      description: This is payload is used to demonstrate property validation.
+      type: object
+      properties:
+        aString:
+          description: 'Description here ...'
+          type: string
+          minLenght: 0
+          maxLength: 256
+          default: ‘a default value’
 
   securitySchemes:
     apiKey:

@@ -382,7 +382,7 @@ components:
         aString:
           description: 'Description here ...'
           type: string
-          minLenght: 0
+          minLength: 0
           maxLength: 256
           default: ‘a default value’
 

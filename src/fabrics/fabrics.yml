@@ -403,7 +403,10 @@ components:
           exclusiveMinimum: -100
           exclusiveMaximum: 100
           default: 0
-          
+      required: 
+        aInteger
+        anotherInteger
+
   securitySchemes:
     apiKey:
       type: apiKey

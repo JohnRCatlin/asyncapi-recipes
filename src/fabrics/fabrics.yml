@@ -385,6 +385,10 @@ components:
           minLength: 0
           maxLength: 256
           default: 'a default value'
+        anotherString:
+          description: 'Description here ..'
+          type: string
+          pattern: '[a-zA-Z]'
         aInteger:
           description: 'Description here ....'
           type: integer

@@ -391,14 +391,14 @@ components:
           format: int32
           minimum: -100
           maximum: 100
-	  default: 99
+          default: 99
         anotherInteger:
           description: 'Description here .....'
           type: integer
           format: int32
           exclusiveMinimum: -100
           exclusiveMaximum: 100
-	  default: 0
+          default: 0
           
   securitySchemes:
     apiKey:

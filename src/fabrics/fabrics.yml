@@ -385,7 +385,21 @@ components:
           minLength: 0
           maxLength: 256
           default: 'a default value'
-
+        aInteger:
+          description: 'Description here ....'
+          type: integer
+          format: int32
+          minimum: -100
+          maximum: 100
+	        default: 99
+        anotherInteger:
+          description: 'Description here .....'
+          type: integer
+          format: int32
+          exclusiveMinimum: -100
+          exclusiveMaximum: 100
+	        default: 0
+          
   securitySchemes:
     apiKey:
       type: apiKey

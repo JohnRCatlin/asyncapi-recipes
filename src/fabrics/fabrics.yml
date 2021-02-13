@@ -384,7 +384,7 @@ components:
           type: string
           minLength: 0
           maxLength: 256
-          default: ‘a default value’
+          default: 'a default value'
 
   securitySchemes:
     apiKey:

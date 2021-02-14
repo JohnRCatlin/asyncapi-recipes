@@ -226,10 +226,9 @@ components:
       format: date-time
       description: Date and time when the message was sent.
 
-    typeCompendiumPayload:
-      name: typeCompendiumPayload
-      description: This is payload is used to demonstrate a range property types.
-      
+    typeCompendium:
+      name: typeCompendium
+      description: This is payload is used to demonstrate a range property types.    
       type: object
       properties:
         aString:
@@ -374,8 +373,8 @@ components:
           - three
           - four
 
-    validationCompondiumPayload:
-      name: validationCompondiumPayload
+    validationCompondium:
+      name: validationCompondium
       description: This is payload is used to demonstrate property validation.
       type: object
       properties:
@@ -407,9 +406,10 @@ components:
         - aInteger
         - anotherInteger
 
-    singleEnumPayload:
+    singleEnum:
+      name: singleEnum
+      description: 'This is payload is used to demonstrate a discrete enum.'
       type: string
-      description: 'Description here ...'
       enum:
         - one
         - two

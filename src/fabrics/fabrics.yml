@@ -407,6 +407,15 @@ components:
         - aInteger
         - anotherInteger
 
+    singleEnumPayload:
+      type: string
+      description: 'Description here ...'
+      enum:
+        - one
+        - two
+        - three
+        - four
+        
   securitySchemes:
     apiKey:
       type: apiKey

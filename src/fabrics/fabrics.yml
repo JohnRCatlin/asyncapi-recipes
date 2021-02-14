@@ -406,8 +406,8 @@ components:
         - aInteger
         - anotherInteger
 
-    singleEnum:
-      name: singleEnum
+    someNumbers:
+      name: someNumbers
       description: 'This is payload is used to demonstrate a discrete enum.'
       type: string
       enum:

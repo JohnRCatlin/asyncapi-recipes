@@ -29,7 +29,7 @@ servers:
 
   entityFabric:
     url: 'demo.entityFabric.example.com:{port}'
-    protocol: mqtt
+    protocol: kafka
     description: Server description...
     variables:
       port:
@@ -47,7 +47,7 @@ servers:
       
   eventFabric:
     url: 'demo.eventFabric.example.com:{port}'
-    protocol: mqtt
+    protocol: kafka
     description: Server description...
     variables:
       port:
@@ -65,7 +65,7 @@ servers:
       
   commandFabric:
     url: 'demo.commandFabric.example.com:{port}'
-    protocol: mqtt
+    protocol: kafka
     description: Server description...
     variables:
       port:

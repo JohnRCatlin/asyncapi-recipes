@@ -18,9 +18,9 @@ asyncapi: 2.0.0
 defaultContentType: application/json
 
 info:
-  title: Type Compendiums - Recipe
+  title: Validation Compendiums - Recipe
   version: 0.0.0
-  description: An AsyncAPI recipe for type compendiums. This is used to support testing of the asyncapi.engineer.spyder parser and code generator.
+  description: This is used to support testing of the asyncapi.engineer.spyder parser and code generator.
   license:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0'
@@ -50,7 +50,7 @@ servers:
 
 channels:
 
-  entities/publish/typeCompendium/1/0:
+  entities/publish/validationCompendium/1/0:
     description: Description of this entity channel here...
     publish:
       description: Description of this entity publish operation here...
@@ -59,9 +59,9 @@ channels:
       traits:
         - $ref: '#/components/operationTraits/kafka'
       message:
-        $ref: '#/components/messages/typeCompendium'
+        $ref: '#/components/messages/validationCompendium'
 
-  entities/subscribe/typeCompendium/1/0:
+  entities/subscribe/validationCompendium/1/0:
     description: Description of this entity channel here...
     subscribe:
       description: Description of this entity subscribe operation here...
@@ -70,168 +70,53 @@ channels:
       traits:
         - $ref: '#/components/operationTraits/kafka'
       message:
-        $ref: '#/components/messages/typeCompendium'
+        $ref: '#/components/messages/validationCompendium'
 
 components:
 
   messages:
-    typeCompendium:
-      name: typeCompendium
+    validationCompendium:
+      name: validationCompendium
       title: Message Title here...
       summary: Summary of this message here..
       traits:
         - $ref: '#/components/messageTraits/commonHeaders'
       payload:
-        $ref: "#/components/schemas/typeCompendium"
+        $ref: "#/components/schemas/validationCompendium"
 
   schemas:
-
-    typeCompendium:
-      name: typeCompendium
-      description: This is payload is used to demonstrate a range property types.    
+    validationCompendium:
+      name: validationCompendium
+      description: This is payload is used to demonstrate property validation.
       type: object
       properties:
         aString:
           description: 'Description here ...'
           type: string
-          minLenght: 0
+          minLength: 0
           maxLength: 256
-        someStrings:
-          description: 'Description here ...'
-          type: array
-          items:
-            type: string
-            format: byte
-        aByteString:
-          description: 'Description here ...'
+          default: 'a default value'
+        anotherString:
+          description: 'Description here ..'
           type: string
-          format: byte
-          minimum: 0
-        someByteStrings:
-          description: 'Description here ...'
-          type: array
-          items:
-            type: string
-            format: byte
-            minimum: 0
-        aBinaryString:
-          description: 'Description here ...'
-          type: string
-          format: binary
-          minimum: 0
-        someBinaryStrings:
-          description: 'Description here ...'
-          type: array
-          items:
-            type: string
-            format: binary
-            minimum: 0
+          pattern: '[a-zA-Z]'
         aInteger:
-          description: 'Description here ...'
+          description: 'Description here ....'
           type: integer
           format: int32
-          default: 50
           minimum: -100
           maximum: 100
-        someIntegers:
-          description: 'Description here ...'
-          type: array
-          items:
-            type: integer
-            format: int32
-            default: 50
-            minimum: -100
-            maximum: 100
-        aLong:
-          description: 'Description here ...'
+          default: 99
+        anotherInteger:
+          description: 'Description here .....'
           type: integer
-          format: int64
-          minimum: 0
-        someLongs:
-          description: 'Description here ...'
-          type: array
-          items:
-            type: integer
-            format: int64
-            minimum: 0
-        aFloatNumber:
-          description: 'Description here ...'
-          type: number
-          format: float
-          minimum: 0
-        someFloatNumbers:
-          description: 'Description here ...'
-          type: array
-          items:
-            type: number
-            format: float
-            minimum: 0
-        aDoubleNumber:
-          description: 'Description here ...'
-          type: number
-          format: double
-          minimum: 0
-        someDoubleNumbers:
-          description: 'Description here ...'
-          type: array
-          items:
-            type: number
-            format: double
-            minimum: 0
-        aBoolean:
-          description: 'Description here ...'
-          type: boolean
-          minimum: 0
-        someBooleans:
-          description: 'Description here ...'
-          type: array
-          items:
-            type: boolean
-            minimum: 0
-        aDate:
-          description: 'Description here ...'
-          type: string
-          format: date
-          minimum: 0
-        someDates:
-          description: 'Description here ...'
-          type: array
-          items:
-            type: string
-            format: date
-            minimum: 0
-        aDateTime:
-          description: 'Description here ...'
-          type: string
-          format: dateTime
-          minimum: 0
-        someDateTimes:
-          description: 'Description here ...'
-          type: array
-          items:
-            type: string
-            format: dateTime
-            minimum: 0
-        aPassword:
-          description: 'Description here ...'
-          type: string
-          format: password
-          minimum: 0
-        somePasswords:
-          description: 'Description here ...'
-          type: array
-          items:
-            type: string
-            format: password
-            minimum: 0
-        aEnum:
-          type: string
-          description: 'Description here ...'
-          enum:
-          - one
-          - two
-          - three
-          - four
+          format: int32
+          exclusiveMinimum: -100
+          exclusiveMaximum: 100
+          default: 0
+      required: 
+        - aInteger
+        - anotherInteger
         
   securitySchemes:
     apiKey:

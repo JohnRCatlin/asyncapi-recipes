@@ -24,6 +24,10 @@ info:
   license:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0'
+  contact:
+    name: support
+    url: http://www.example.com/support
+    email: support@example.com
 
 servers:
 
@@ -80,7 +84,7 @@ servers:
 
 channels:
 
-  entities/publish/domain-x/entity-x/1/0/:
+  entities/publish/streetlights/1/0:
     description: Description of this entity channel here...
     publish:
       description: Description of this entity publish operation here...
@@ -89,9 +93,9 @@ channels:
       traits:
         - $ref: '#/components/operationTraits/kafka'
       message:
-        $ref: '#/components/messages/commandMessage'
+        $ref: '#/components/messages/entityWrapper'
 
-  entities/subscribe/domain-x/entity-x/1/0/:
+  entities/subscribe/streetlights/1/0:
     description: Description of this entity channel here...
     subscribe:
       description: Description of this entity subscribe operation here...
@@ -100,9 +104,9 @@ channels:
       traits:
         - $ref: '#/components/operationTraits/kafka'
       message:
-        $ref: '#/components/messages/commandMessage'
+        $ref: '#/components/messages/entityWrapper'
 
-  commands/publish/domain-x/command-x/1/0/:
+  commands/publish/streetlights/1/0:
     description: Description of this command channel here...
     publish:
       description: Description of this command publish operation here...
@@ -111,9 +115,9 @@ channels:
       traits:
         - $ref: '#/components/operationTraits/kafka'
       message:
-        $ref: '#/components/messages/commandMessage'
+        $ref: '#/components/messages/commandWrapper'
 
-  commands/subscribe/domain-x/command-x/1/0/:
+  commands/subscribe/streetlights/1/0:
     description: Description of this command channel here...
     subscribe:
       description: Description of this command subscribe operation here...
@@ -122,9 +126,9 @@ channels:
       traits:
         - $ref: '#/components/operationTraits/kafka'
       message:
-        $ref: '#/components/messages/commandMessage'
+        $ref: '#/components/messages/commandWrapper'
 
-  events/publish/domain-x/event-x/1/0/:
+  events/publish/streetlights/1/0:
     description: Description of this EVENT publish channel...
     publish:
       description: Description of this EVENT publish operation here...
@@ -133,9 +137,9 @@ channels:
       traits:
         - $ref: '#/components/operationTraits/kafka'
       message:
-        $ref: '#/components/messages/commandMessage'
+        $ref: '#/components/messages/eventWrapper'
 
-  events/subscribe/domain-x/event-x/1/0/:
+  events/subscribe/streetlights/1/0:
     description: Description of this EVENT subscribe channel here...
     subscribe:
       description: Description of this EVENT subscribe operation here...
@@ -144,28 +148,28 @@ channels:
       traits:
         - $ref: '#/components/operationTraits/kafka'
       message:
-        $ref: '#/components/messages/commandMessage'
+        $ref: '#/components/messages/eventWrapper'
 
 components:
   messages:
-    entityMessage:
-      name: entityMessage
+    entityWrapper:
+      name: entityWrapper
       title: Message Title here...
       summary: Summary of this message here..
       traits:
         - $ref: '#/components/messageTraits/commonHeaders'
       payload:
         $ref: "#/components/schemas/lightMeasuredEvent"
-    commandMessage:
-      name: commandMessage
+    commandWrapper:
+      name: commandWrapper
       title: Message Title here...
       summary: Summary of this message here..
       traits:
         - $ref: '#/components/messageTraits/commonHeaders'
       payload:
         $ref: "#/components/schemas/lightMeasuredEvent"
-    eventMessage:
-      name: eventMessage
+    eventWrapper:
+      name:  eventWrapper
       title: Message Title here...
       summary: Summary of this message here..
       traits:
@@ -222,196 +226,6 @@ components:
       type: string
       format: date-time
       description: Date and time when the message was sent.
-
-    typeCompendium:
-      name: typeCompendium
-      description: This is payload is used to demonstrate a range property types.    
-      type: object
-      properties:
-        aString:
-          description: 'Description here ...'
-          type: string
-          minLenght: 0
-          maxLength: 256
-        someStrings:
-          description: 'Description here ...'
-          type: array
-          items:
-            type: string
-            format: byte
-        aByteString:
-          description: 'Description here ...'
-          type: string
-          format: byte
-          minimum: 0
-        someByteStrings:
-          description: 'Description here ...'
-          type: array
-          items:
-            type: string
-            format: byte
-            minimum: 0
-        aBinaryString:
-          description: 'Description here ...'
-          type: string
-          format: binary
-          minimum: 0
-        someBinaryStrings:
-          description: 'Description here ...'
-          type: array
-          items:
-            type: string
-            format: binary
-            minimum: 0
-        aInteger:
-          description: 'Description here ...'
-          type: integer
-          format: int32
-          default: 50
-          minimum: -100
-          maximum: 100
-        someIntegers:
-          description: 'Description here ...'
-          type: array
-          items:
-            type: integer
-            format: int32
-            default: 50
-            minimum: -100
-            maximum: 100
-        aLong:
-          description: 'Description here ...'
-          type: integer
-          format: int64
-          minimum: 0
-        someLongs:
-          description: 'Description here ...'
-          type: array
-          items:
-            type: integer
-            format: int64
-            minimum: 0
-        aFloatNumber:
-          description: 'Description here ...'
-          type: number
-          format: float
-          minimum: 0
-        someFloatNumbers:
-          description: 'Description here ...'
-          type: array
-          items:
-            type: number
-            format: float
-            minimum: 0
-        aDoubleNumber:
-          description: 'Description here ...'
-          type: number
-          format: double
-          minimum: 0
-        someDoubleNumbers:
-          description: 'Description here ...'
-          type: array
-          items:
-            type: number
-            format: double
-            minimum: 0
-        aBoolean:
-          description: 'Description here ...'
-          type: boolean
-          minimum: 0
-        someBooleans:
-          description: 'Description here ...'
-          type: array
-          items:
-            type: boolean
-            minimum: 0
-        aDate:
-          description: 'Description here ...'
-          type: string
-          format: date
-          minimum: 0
-        someDates:
-          description: 'Description here ...'
-          type: array
-          items:
-            type: string
-            format: date
-            minimum: 0
-        aDateTime:
-          description: 'Description here ...'
-          type: string
-          format: dateTime
-          minimum: 0
-        someDateTimes:
-          description: 'Description here ...'
-          type: array
-          items:
-            type: string
-            format: dateTime
-            minimum: 0
-        aPassword:
-          description: 'Description here ...'
-          type: string
-          format: password
-          minimum: 0
-        somePasswords:
-          description: 'Description here ...'
-          type: array
-          items:
-            type: string
-            format: password
-            minimum: 0
-        aEnum:
-          type: string
-          description: 'Description here ...'
-          enum:
-          - one
-          - two
-          - three
-          - four
-
-    validationCompondium:
-      name: validationCompondium
-      description: This is payload is used to demonstrate property validation.
-      type: object
-      properties:
-        aString:
-          description: 'Description here ...'
-          type: string
-          minLength: 0
-          maxLength: 256
-          default: 'a default value'
-        anotherString:
-          description: 'Description here ..'
-          type: string
-          pattern: '[a-zA-Z]'
-        aInteger:
-          description: 'Description here ....'
-          type: integer
-          format: int32
-          minimum: -100
-          maximum: 100
-          default: 99
-        anotherInteger:
-          description: 'Description here .....'
-          type: integer
-          format: int32
-          exclusiveMinimum: -100
-          exclusiveMaximum: 100
-          default: 0
-      required: 
-        - aInteger
-        - anotherInteger
-
-    someNumbers:
-      name: someNumbers
-      description: 'This is payload is used to demonstrate a discrete enum.'
-      type: string
-      enum:
-        - one
-        - two
-        - three
-        - four
         
   securitySchemes:
     apiKey:

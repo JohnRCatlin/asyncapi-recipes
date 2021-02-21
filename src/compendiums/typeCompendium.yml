@@ -1,0 +1,308 @@
+#--------------------------------------------------------------------------
+# Copyright 2021 asyncapi.engineer
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#--------------------------------------------------------------------------
+asyncapi: 2.0.0
+
+defaultContentType: application/json
+
+info:
+  title: Type Compendiums - Recipe
+  version: 0.0.0
+  description: An AsyncAPI recipe for type compendiums. This is used to support testing of the asyncapi.engineer.spyder parser and code generator.
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0'
+  contact:
+    name: support
+    url: http://www.example.com/support
+    email: support@example.com
+
+servers:
+
+  entityFabric:
+    url: 'demo.entityFabric.example.com:{port}'
+    protocol: kafka
+    description: Server description...
+    variables:
+      port:
+        description: Port description...
+        default: '9092'
+        enum:
+          - '9092'
+    security:
+      - apiKey: []
+      - supportedOauthFlows:
+          - publishEntities
+          - subscribeToEntities
+      - openIdConnectWellKnown: []
+
+channels:
+
+  entities/publish/typeCompendium/1/0:
+    description: Description of this entity channel here...
+    publish:
+      description: Description of this entity publish operation here...
+      summary: Summary of this entity publish operation here...
+      operationId: publishEntity
+      traits:
+        - $ref: '#/components/operationTraits/kafka'
+      message:
+        $ref: '#/components/messages/typeCompendium'
+
+  entities/subscribe/typeCompendium/1/0:
+    description: Description of this entity channel here...
+    subscribe:
+      description: Description of this entity subscribe operation here...
+      summary: Summary of this entity subscribe operation here ...
+      operationId: subscribeEntity
+      traits:
+        - $ref: '#/components/operationTraits/kafka'
+      message:
+        $ref: '#/components/messages/typeCompendium'
+
+components:
+
+  messages:
+    typeCompendium:
+      name: typeCompendium
+      title: Message Title here...
+      summary: Summary of this message here..
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: "#/components/schemas/typeCompendium"
+
+  schemas:
+
+    typeCompendium:
+      name: typeCompendium
+      description: This is payload is used to demonstrate a range property types.    
+      type: object
+      properties:
+        aString:
+          description: 'Description here ...'
+          type: string
+          minLenght: 0
+          maxLength: 256
+        someStrings:
+          description: 'Description here ...'
+          type: array
+          items:
+            type: string
+            format: byte
+        aByteString:
+          description: 'Description here ...'
+          type: string
+          format: byte
+          minimum: 0
+        someByteStrings:
+          description: 'Description here ...'
+          type: array
+          items:
+            type: string
+            format: byte
+            minimum: 0
+        aBinaryString:
+          description: 'Description here ...'
+          type: string
+          format: binary
+          minimum: 0
+        someBinaryStrings:
+          description: 'Description here ...'
+          type: array
+          items:
+            type: string
+            format: binary
+            minimum: 0
+        aInteger:
+          description: 'Description here ...'
+          type: integer
+          format: int32
+          default: 50
+          minimum: -100
+          maximum: 100
+        someIntegers:
+          description: 'Description here ...'
+          type: array
+          items:
+            type: integer
+            format: int32
+            default: 50
+            minimum: -100
+            maximum: 100
+        aLong:
+          description: 'Description here ...'
+          type: integer
+          format: int64
+          minimum: 0
+        someLongs:
+          description: 'Description here ...'
+          type: array
+          items:
+            type: integer
+            format: int64
+            minimum: 0
+        aFloatNumber:
+          description: 'Description here ...'
+          type: number
+          format: float
+          minimum: 0
+        someFloatNumbers:
+          description: 'Description here ...'
+          type: array
+          items:
+            type: number
+            format: float
+            minimum: 0
+        aDoubleNumber:
+          description: 'Description here ...'
+          type: number
+          format: double
+          minimum: 0
+        someDoubleNumbers:
+          description: 'Description here ...'
+          type: array
+          items:
+            type: number
+            format: double
+            minimum: 0
+        aBoolean:
+          description: 'Description here ...'
+          type: boolean
+          minimum: 0
+        someBooleans:
+          description: 'Description here ...'
+          type: array
+          items:
+            type: boolean
+            minimum: 0
+        aDate:
+          description: 'Description here ...'
+          type: string
+          format: date
+          minimum: 0
+        someDates:
+          description: 'Description here ...'
+          type: array
+          items:
+            type: string
+            format: date
+            minimum: 0
+        aDateTime:
+          description: 'Description here ...'
+          type: string
+          format: dateTime
+          minimum: 0
+        someDateTimes:
+          description: 'Description here ...'
+          type: array
+          items:
+            type: string
+            format: dateTime
+            minimum: 0
+        aPassword:
+          description: 'Description here ...'
+          type: string
+          format: password
+          minimum: 0
+        somePasswords:
+          description: 'Description here ...'
+          type: array
+          items:
+            type: string
+            format: password
+            minimum: 0
+        aEnum:
+          type: string
+          description: 'Description here ...'
+          enum:
+          - one
+          - two
+          - three
+          - four
+        
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: user
+      description: Provide your API key as the user and leave the password empty.
+    supportedOauthFlows:
+      type: oauth2
+      description: Flows to support OAuth 2.0
+      flows:
+        implicit:
+          authorizationUrl: 'https://authserver.example/auth'
+          scopes:
+            'streetlights:on': Ability to switch lights on
+            'streetlights:off': Ability to switch lights off
+            'streetlights:dim': Ability to dim the lights
+        password:
+          tokenUrl: 'https://authserver.example/token'
+          scopes:
+            'streetlights:on': Ability to switch lights on
+            'streetlights:off': Ability to switch lights off
+            'streetlights:dim': Ability to dim the lights
+        clientCredentials:
+          tokenUrl: 'https://authserver.example/token'
+          scopes:
+            'streetlights:on': Ability to switch lights on
+            'streetlights:off': Ability to switch lights off
+            'streetlights:dim': Ability to dim the lights
+        authorizationCode:
+          authorizationUrl: 'https://authserver.example/auth'
+          tokenUrl: 'https://authserver.example/token'
+          refreshUrl: 'https://authserver.example/refresh'
+          scopes:
+            'streetlights:on': Ability to switch lights on
+            'streetlights:off': Ability to switch lights off
+            'streetlights:dim': Ability to dim the lights
+    openIdConnectWellKnown:
+      type: openIdConnect
+      openIdConnectUrl: 'https://authserver.example/.well-known'
+
+  messageTraits:
+    commonHeaders:
+      headers:
+        type: object
+        properties:
+          my-app-header:
+            type: integer
+            minimum: 0
+            maximum: 100
+
+  operationTraits:
+    kafka:
+      bindings:
+        kafka:
+          clientId: my-app-id
+          bindingVersion: '0.1.0'
+         
+  messageBindings:
+    kafka:
+       key:
+          type: string
+          enum: ['myKey']
+       bindingVersion: '0.1.0'
+
+tags:
+  - name: Catalog
+    description: Recipes
+  - name: Type
+    description: Recipe
+  - name: Access
+    description: Public
+  - name: License
+    description: Apache 2.0
+ 

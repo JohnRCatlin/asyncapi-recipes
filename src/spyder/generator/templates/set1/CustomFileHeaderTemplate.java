@@ -1,4 +1,4 @@
 /*
- * Your corproate file header here!
+ * Your corporate file header here!
  * Generation Timestamp: ${.now?datetime}
  */

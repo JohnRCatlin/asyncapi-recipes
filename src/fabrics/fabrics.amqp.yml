@@ -483,60 +483,61 @@ components:
   operationTraits:
 
   serverBindings:
-
     amqpExampleServerBinding:
-    bindingVersion: 0.1.0  
-
+      amqp:
+        bindingVersion: 0.1.0  
 
   channelBindings:
-
     amqpExampleChannelBinding:
-      is: routingKey
-      queue:
-        name: my-queue-name
-        durable: true
-        exclusive: true
-        autoDelete: false
-        vhost: /
-      exchange:
-        name: myExchange
-        type: topic
-        durable: true
-        autoDelete: false
-        vhost: /
-      bindingVersion: 0.1.0
-        
+      amqp:
+        is: routingKey
+        queue:
+          name: my-queue-name
+          durable: true
+          exclusive: true
+          autoDelete: false
+          vhost: /
+        exchange:
+          name: myExchange
+          type: topic
+          durable: true
+          autoDelete: false
+          vhost: /
+        bindingVersion: 0.1.0
+
   operationBindings:
-    
     amqpExampleOperationBinding:
-      expiration: 100000
-      userId: guest
-      cc: ['user.logs']
-      priority: 10
-      deliveryMode: 2
-      mandatory: false
-      bcc: ['external.audit']
-      replyTo: user.signedup
-      timestamp: true
-      ack: false
-      bindingVersion: 0.1.0
+      amqp:
+        expiration: 100000
+        userId: guest
+        cc: ['user.logs']
+        priority: 10
+        deliveryMode: 2
+        mandatory: false
+        bcc: ['external.audit']
+        replyTo: user.signedup
+        timestamp: true
+        ack: false
+        bindingVersion: 0.1.0
 
   messageBindings:
-    
     amqpCommandMessageBinding:
-      contentEncoding: application/json
-      messageType: 'commandWrapper'
-      bindingVersion: 0.1.0  
+      amqp:
+        contentEncoding: application/json
+        messageType: 'commandWrapper'
+        bindingVersion: 0.1.0  
     
     amqpEventMessageBinding:
-      contentEncoding: application/json
-      messageType: 'eventWrapper'
-      bindingVersion: 0.1.0  
+      amqp:
+        contentEncoding: application/json
+        messageType: 'eventWrapper'
+        bindingVersion: 0.1.0  
     
     amqpEntityMessageBinding:
-      contentEncoding: application/json
-      messageType: 'entityWrapper'
-      bindingVersion: 0.1.0  
+      amqp:
+        contentEncoding: application/json
+        messageType: 'entityWrapper'
+        bindingVersion: 0.1.0  
 
 
 tags:

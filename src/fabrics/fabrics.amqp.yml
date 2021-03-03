@@ -481,6 +481,10 @@ components:
             maximum: 100
 
   operationTraits:
+    amqp:
+      bindings:
+        amqp:
+          userId: guest
 
   serverBindings:
     amqpExampleServerBinding:

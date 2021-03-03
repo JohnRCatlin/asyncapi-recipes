@@ -1,0 +1,551 @@
+#--------------------------------------------------------------------------
+# Copyright 2021 asyncapi.engineer
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#--------------------------------------------------------------------------
+asyncapi: 2.0.0
+
+defaultContentType: application/json
+
+info:
+  title: A Fabrics Pattern - Recipe
+  version: 0.0.0
+  description: An AsyncAPI recipe for ..
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0'
+  contact:
+    name: support
+    url: http://www.example.com/support
+    email: support@example.com
+
+servers:
+
+  entityFabric:
+    url: 'demo.entityFabric.example.com:{port}'
+    protocol: amqp
+    description: Server description...
+    variables:
+      port:
+        description: Port description...
+        default: '5672'
+        enum:
+          - '5672'
+    security:
+      - apiKey: []
+      - supportedOauthFlows:
+          - publishEntities
+          - subscribeToEntities
+      - openIdConnectWellKnown: []
+      
+  eventFabric:
+    url: 'demo.eventFabric.example.com:{port}'
+    protocol: amqp
+    description: Server description...
+    variables:
+      port:
+        description: Port description ...
+        default: '5672'
+        enum:
+          - '5672'
+    security:
+      - apiKey: []
+      - supportedOauthFlows:
+          - publishEvents
+          - subscribeToEvents
+      - openIdConnectWellKnown: []
+      
+  commandFabric:
+    url: 'demo.commandFabric.example.com:{port}'
+    protocol: amqp
+    description: Server description...
+    variables:
+      port:
+        description: Port description ...
+        default: '5672'
+        enum:
+          - '5672'
+    security:
+      - apiKey: []
+      - supportedOauthFlows:
+          - publishCommands
+          - subscribeToCommands
+      - openIdConnectWellKnown: []
+
+channels:
+
+  entities/publish/streetlights/1/0:
+    description: Description of this entity channel here...
+    publish:
+      description: Description of this entity publish operation here...
+      summary: Summary of this entity publish operation here...
+      operationId: publishEntity
+      traits:
+        - $ref: '#/components/operationTraits/amqp'
+      message:
+        $ref: '#/components/messages/entityWrapper'
+        bindings:
+          amqp:
+            contentEncoding: application/json
+            messageType: 'user.signup'
+            bindingVersion: 0.1.0
+      bindings:
+        amqp:
+          expiration: 100000
+          userId: guest
+          cc: ['user.logs']
+          priority: 10
+          deliveryMode: 2
+          mandatory: false
+          bcc: ['external.audit']
+          replyTo: user.signedup
+          timestamp: true
+          ack: false
+          bindingVersion: 0.1.0
+    bindings:
+      amqp:
+        is: routingKey
+        queue:
+          name: my-queue-name
+          durable: true
+          exclusive: true
+          autoDelete: false
+          vhost: /
+        exchange:
+          name: myExchange
+          type: topic
+          durable: true
+          autoDelete: false
+          vhost: /
+        bindingVersion: 0.1.0
+
+  entities/subscribe/streetlights/1/0:
+    description: Description of this entity channel here...
+    subscribe:
+      description: Description of this entity subscribe operation here...
+      summary: Summary of this entity subscribe operation here ...
+      operationId: subscribeEntity
+      traits:
+        - $ref: '#/components/operationTraits/amqp'
+      message:
+        $ref: '#/components/messages/entityWrapper'
+        bindings:
+          amqp:
+            contentEncoding: application/json
+            messageType: 'user.signup'
+            bindingVersion: 0.1.0
+      bindings:
+        amqp:
+          expiration: 100000
+          userId: guest
+          cc: ['user.logs']
+          priority: 10
+          deliveryMode: 2
+          mandatory: false
+          bcc: ['external.audit']
+          replyTo: user.signedup
+          timestamp: true
+          ack: false
+          bindingVersion: 0.1.0
+    bindings:
+      amqp:
+        is: routingKey
+        queue:
+          name: my-queue-name
+          durable: true
+          exclusive: true
+          autoDelete: false
+          vhost: /
+        exchange:
+          name: myExchange
+          type: topic
+          durable: true
+          autoDelete: false
+          vhost: /
+        bindingVersion: 0.1.0
+
+  commands/publish/streetlights/1/0:
+    description: Description of this command channel here...
+    publish:
+      description: Description of this command publish operation here...
+      summary: Summary of this command publish operation here...
+      operationId: publishCommand
+      traits:
+        - $ref: '#/components/operationTraits/amqp'
+      message:
+        $ref: '#/components/messages/commandWrapper'
+        bindings:
+          amqp:
+            contentEncoding: application/json
+            messageType: 'user.signup'
+            bindingVersion: 0.1.0
+      bindings:
+        amqp:
+          expiration: 100000
+          userId: guest
+          cc: ['user.logs']
+          priority: 10
+          deliveryMode: 2
+          mandatory: false
+          bcc: ['external.audit']
+          replyTo: user.signedup
+          timestamp: true
+          ack: false
+          bindingVersion: 0.1.0
+    bindings:
+      amqp:
+        is: routingKey
+        queue:
+          name: my-queue-name
+          durable: true
+          exclusive: true
+          autoDelete: false
+          vhost: /
+        exchange:
+          name: myExchange
+          type: topic
+          durable: true
+          autoDelete: false
+          vhost: /
+        bindingVersion: 0.1.0
+
+  commands/subscribe/streetlights/1/0:
+    description: Description of this command channel here...
+    subscribe:
+      description: Description of this command subscribe operation here...
+      summary: Summary of this command subscribe operation here...
+      operationId: subscribeCommand
+      traits:
+        - $ref: '#/components/operationTraits/amqp'
+      message:
+        $ref: '#/components/messages/commandWrapper'
+        bindings:
+          amqp:
+            contentEncoding: application/json
+            messageType: 'user.signup'
+            bindingVersion: 0.1.0
+      bindings:
+        amqp:
+          expiration: 100000
+          userId: guest
+          cc: ['user.logs']
+          priority: 10
+          deliveryMode: 2
+          mandatory: false
+          bcc: ['external.audit']
+          replyTo: user.signedup
+          timestamp: true
+          ack: false
+          bindingVersion: 0.1.0
+    bindings:
+      amqp:
+        is: routingKey
+        queue:
+          name: my-queue-name
+          durable: true
+          exclusive: true
+          autoDelete: false
+          vhost: /
+        exchange:
+          name: myExchange
+          type: topic
+          durable: true
+          autoDelete: false
+          vhost: /
+        bindingVersion: 0.1.0
+
+  events/publish/streetlights/1/0:
+    description: Description of this EVENT publish channel...
+    publish:
+      description: Description of this EVENT publish operation here...
+      summary: Summary of this EVENT publish operation here...
+      operationId: publishEvent
+      traits:
+        - $ref: '#/components/operationTraits/amqp'
+      message:
+        $ref: '#/components/messages/eventWrapper'
+        bindings:
+          amqp:
+            contentEncoding: application/json
+            messageType: 'user.signup'
+            bindingVersion: 0.1.0
+      bindings:
+        amqp:
+          expiration: 100000
+          userId: guest
+          cc: ['user.logs']
+          priority: 10
+          deliveryMode: 2
+          mandatory: false
+          bcc: ['external.audit']
+          replyTo: user.signedup
+          timestamp: true
+          ack: false
+          bindingVersion: 0.1.0
+    bindings:
+      amqp:
+        is: routingKey
+        queue:
+          name: my-queue-name
+          durable: true
+          exclusive: true
+          autoDelete: false
+          vhost: /
+        exchange:
+          name: myExchange
+          type: topic
+          durable: true
+          autoDelete: false
+          vhost: /
+        bindingVersion: 0.1.0
+
+  events/subscribe/streetlights/1/0:
+    description: Description of this EVENT subscribe channel here...
+    subscribe:
+      description: Description of this EVENT subscribe operation here...
+      summary: Summary of this EVENT subscribe operation here...
+      operationId: subscribeEvent
+      traits:
+        - $ref: '#/components/operationTraits/amqp'
+      message:
+        $ref: '#/components/messages/eventWrapper'
+        bindings:
+          amqp:
+            contentEncoding: application/json
+            messageType: 'user.signup'
+            bindingVersion: 0.1.0
+      bindings:
+        amqp:
+          expiration: 100000
+          userId: guest
+          cc: ['user.logs']
+          priority: 10
+          deliveryMode: 2
+          mandatory: false
+          bcc: ['external.audit']
+          replyTo: user.signedup
+          timestamp: true
+          ack: false
+          bindingVersion: 0.1.0
+    bindings:
+      amqp:
+        is: routingKey
+        queue:
+          name: my-queue-name
+          durable: true
+          exclusive: true
+          autoDelete: false
+          vhost: /
+        exchange:
+          name: myExchange
+          type: topic
+          durable: true
+          autoDelete: false
+          vhost: /
+        bindingVersion: 0.1.0
+
+components:
+  messages:
+    entityWrapper:
+      name: entityWrapper
+      title: Message Title here...
+      summary: Summary of this message here..
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: "#/components/schemas/lightMeasuredEvent"
+    commandWrapper:
+      name: commandWrapper
+      title: Message Title here...
+      summary: Summary of this message here..
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: "#/components/schemas/lightMeasuredEvent"
+    eventWrapper:
+      name:  eventWrapper
+      title: Message Title here...
+      summary: Summary of this message here..
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: "#/components/schemas/lightMeasuredEvent"
+
+  schemas:
+
+    lightMeasurementEntity:
+      type: object
+      properties:
+        lumens:
+          type: integer
+          minimum: 0
+          description: Light intensity measured in lumens.
+        sentAt:
+          $ref: "#/components/schemas/sentAt"
+
+    lightMeasuredEvent:
+      type: object
+      properties:
+        lumens:
+          type: integer
+          minimum: 0
+          description: Light intensity measured in lumens.
+        sentAt:
+          $ref: "#/components/schemas/sentAt"
+
+    turnOnOffCommand:
+      type: object
+      properties:
+        command:
+          type: string
+          enum:
+            - on
+            - off
+          description: Whether to turn on or off the light.
+        sentAt:
+          $ref: "#/components/schemas/sentAt"
+
+    dimLightCommand:
+      type: object
+      properties:
+        percentage:
+          type: integer
+          description: Percentage to which the light should be dimmed to.
+          minimum: 0
+          maximum: 100
+        sentAt:
+          $ref: "#/components/schemas/sentAt"
+    
+    sentAt:
+      type: string
+      format: date-time
+      description: Date and time when the message was sent.
+        
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: user
+      description: Provide your API key as the user and leave the password empty.
+    supportedOauthFlows:
+      type: oauth2
+      description: Flows to support OAuth 2.0
+      flows:
+        implicit:
+          authorizationUrl: 'https://authserver.example/auth'
+          scopes:
+            'streetlights:on': Ability to switch lights on
+            'streetlights:off': Ability to switch lights off
+            'streetlights:dim': Ability to dim the lights
+        password:
+          tokenUrl: 'https://authserver.example/token'
+          scopes:
+            'streetlights:on': Ability to switch lights on
+            'streetlights:off': Ability to switch lights off
+            'streetlights:dim': Ability to dim the lights
+        clientCredentials:
+          tokenUrl: 'https://authserver.example/token'
+          scopes:
+            'streetlights:on': Ability to switch lights on
+            'streetlights:off': Ability to switch lights off
+            'streetlights:dim': Ability to dim the lights
+        authorizationCode:
+          authorizationUrl: 'https://authserver.example/auth'
+          tokenUrl: 'https://authserver.example/token'
+          refreshUrl: 'https://authserver.example/refresh'
+          scopes:
+            'streetlights:on': Ability to switch lights on
+            'streetlights:off': Ability to switch lights off
+            'streetlights:dim': Ability to dim the lights
+    openIdConnectWellKnown:
+      type: openIdConnect
+      openIdConnectUrl: 'https://authserver.example/.well-known'
+
+  messageTraits:
+    commonHeaders:
+      headers:
+        type: object
+        properties:
+          my-app-header:
+            type: integer
+            minimum: 0
+            maximum: 100
+
+  operationTraits:
+
+  serverBindings:
+
+    amqpExampleServerBinding:
+    bindingVersion: 0.1.0  
+
+
+  channelBindings:
+
+    amqpExampleChannelBinding:
+      is: routingKey
+      queue:
+        name: my-queue-name
+        durable: true
+        exclusive: true
+        autoDelete: false
+        vhost: /
+      exchange:
+        name: myExchange
+        type: topic
+        durable: true
+        autoDelete: false
+        vhost: /
+      bindingVersion: 0.1.0
+        
+  operationBindings:
+    
+    amqpExampleOperationBinding:
+      expiration: 100000
+      userId: guest
+      cc: ['user.logs']
+      priority: 10
+      deliveryMode: 2
+      mandatory: false
+      bcc: ['external.audit']
+      replyTo: user.signedup
+      timestamp: true
+      ack: false
+      bindingVersion: 0.1.0
+
+  messageBindings:
+    
+    amqpCommandMessageBinding:
+      contentEncoding: application/json
+      messageType: 'commandWrapper'
+      bindingVersion: 0.1.0  
+    
+    amqpEventMessageBinding:
+      contentEncoding: application/json
+      messageType: 'eventWrapper'
+      bindingVersion: 0.1.0  
+    
+    amqpEntityMessageBinding:
+      contentEncoding: application/json
+      messageType: 'entityWrapper'
+      bindingVersion: 0.1.0  
+
+
+tags:
+  - name: Catalog
+    description: Recipes
+  - name: Type
+    description: Recipe
+  - name: Access
+    description: Public
+  - name: License
+    description: Apache 2.0
+ 

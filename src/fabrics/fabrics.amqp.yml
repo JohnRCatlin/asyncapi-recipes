@@ -98,7 +98,7 @@ channels:
           amqp:
             contentEncoding: application/json
             messageType: 'user.signup'
-            bindingVersion: 0.1.0
+            bindingVersion: 0.2.0
       bindings:
         amqp:
           expiration: 100000
@@ -111,7 +111,7 @@ channels:
           replyTo: user.signedup
           timestamp: true
           ack: false
-          bindingVersion: 0.1.0
+          bindingVersion: 0.2.0
     bindings:
       amqp:
         is: routingKey
@@ -127,7 +127,7 @@ channels:
           durable: true
           autoDelete: false
           vhost: /
-        bindingVersion: 0.1.0
+        bindingVersion: 0.2.0
 
   entities/subscribe/streetlights/1/0:
     description: Description of this entity channel here...
@@ -143,7 +143,7 @@ channels:
           amqp:
             contentEncoding: application/json
             messageType: 'user.signup'
-            bindingVersion: 0.1.0
+            bindingVersion: 0.2.0
       bindings:
         amqp:
           expiration: 100000
@@ -156,7 +156,7 @@ channels:
           replyTo: user.signedup
           timestamp: true
           ack: false
-          bindingVersion: 0.1.0
+          bindingVersion: 0.2.0
     bindings:
       amqp:
         is: routingKey
@@ -172,7 +172,7 @@ channels:
           durable: true
           autoDelete: false
           vhost: /
-        bindingVersion: 0.1.0
+        bindingVersion: 0.2.0
 
   commands/publish/streetlights/1/0:
     description: Description of this command channel here...
@@ -188,7 +188,7 @@ channels:
           amqp:
             contentEncoding: application/json
             messageType: 'user.signup'
-            bindingVersion: 0.1.0
+            bindingVersion: 0.2.0
       bindings:
         amqp:
           expiration: 100000
@@ -201,7 +201,7 @@ channels:
           replyTo: user.signedup
           timestamp: true
           ack: false
-          bindingVersion: 0.1.0
+          bindingVersion: 0.2.0
     bindings:
       amqp:
         is: routingKey
@@ -217,7 +217,7 @@ channels:
           durable: true
           autoDelete: false
           vhost: /
-        bindingVersion: 0.1.0
+        bindingVersion: 0.2.0
 
   commands/subscribe/streetlights/1/0:
     description: Description of this command channel here...
@@ -233,7 +233,7 @@ channels:
           amqp:
             contentEncoding: application/json
             messageType: 'user.signup'
-            bindingVersion: 0.1.0
+            bindingVersion: 0.2.0
       bindings:
         amqp:
           expiration: 100000
@@ -246,7 +246,7 @@ channels:
           replyTo: user.signedup
           timestamp: true
           ack: false
-          bindingVersion: 0.1.0
+          bindingVersion: 0.2.0
     bindings:
       amqp:
         is: routingKey
@@ -262,7 +262,7 @@ channels:
           durable: true
           autoDelete: false
           vhost: /
-        bindingVersion: 0.1.0
+        bindingVersion: 0.2.0
 
   events/publish/streetlights/1/0:
     description: Description of this EVENT publish channel...
@@ -278,7 +278,7 @@ channels:
           amqp:
             contentEncoding: application/json
             messageType: 'user.signup'
-            bindingVersion: 0.1.0
+            bindingVersion: 0.2.0
       bindings:
         amqp:
           expiration: 100000
@@ -291,7 +291,7 @@ channels:
           replyTo: user.signedup
           timestamp: true
           ack: false
-          bindingVersion: 0.1.0
+          bindingVersion: 0.2.0
     bindings:
       amqp:
         is: routingKey
@@ -307,7 +307,7 @@ channels:
           durable: true
           autoDelete: false
           vhost: /
-        bindingVersion: 0.1.0
+        bindingVersion: 0.2.0
 
   events/subscribe/streetlights/1/0:
     description: Description of this EVENT subscribe channel here...
@@ -323,7 +323,7 @@ channels:
           amqp:
             contentEncoding: application/json
             messageType: 'user.signup'
-            bindingVersion: 0.1.0
+            bindingVersion: 0.2.0
       bindings:
         amqp:
           expiration: 100000
@@ -336,7 +336,7 @@ channels:
           replyTo: user.signedup
           timestamp: true
           ack: false
-          bindingVersion: 0.1.0
+          bindingVersion: 0.2.0
     bindings:
       amqp:
         is: routingKey
@@ -352,7 +352,7 @@ channels:
           durable: true
           autoDelete: false
           vhost: /
-        bindingVersion: 0.1.0
+        bindingVersion: 0.2.0
 
 components:
   messages:
@@ -507,7 +507,7 @@ components:
           durable: true
           autoDelete: false
           vhost: /
-        bindingVersion: 0.1.0
+        bindingVersion: 0.2.0
 
   operationBindings:
     amqpExampleOperationBinding:
@@ -522,7 +522,7 @@ components:
         replyTo: user.signedup
         timestamp: true
         ack: false
-        bindingVersion: 0.1.0
+        bindingVersion: 0.2.0
 
   messageBindings:
     amqpCommandMessageBinding:

@@ -284,11 +284,12 @@ components:
           bindingVersion: '0.1.0'
          
   messageBindings:
-    kafka:
-       key:
+    examlpeBinding:
+      kafka:
+        key:
           type: string
           enum: ['myKey']
-       bindingVersion: '0.1.0'
+        bindingVersion: '0.1.0'
 
 tags:
   - name: Catalog

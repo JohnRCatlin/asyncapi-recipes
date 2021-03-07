@@ -361,7 +361,7 @@ components:
       title: Message Title here...
       summary: Summary of this message here..
       traits:
-        - $ref: '#/components/messageTraits/commonHeaders'
+        - $ref: '#/components/messageTraits/yourTraitName'
       payload:
         $ref: "#/components/schemas/lightMeasuredEvent"
     commandWrapper:
@@ -369,7 +369,7 @@ components:
       title: Message Title here...
       summary: Summary of this message here..
       traits:
-        - $ref: '#/components/messageTraits/commonHeaders'
+        - $ref: '#/components/messageTraits/yourTraitName'
       payload:
         $ref: "#/components/schemas/lightMeasuredEvent"
     eventWrapper:
@@ -377,7 +377,7 @@ components:
       title: Message Title here...
       summary: Summary of this message here..
       traits:
-        - $ref: '#/components/messageTraits/commonHeaders'
+        - $ref: '#/components/messageTraits/yourTraitName'
       payload:
         $ref: "#/components/schemas/lightMeasuredEvent"
 
@@ -471,7 +471,7 @@ components:
       openIdConnectUrl: 'https://authserver.example/.well-known'
 
   messageTraits:
-    commonHeaders:
+    yourTraitName:
       headers:
         type: object
         properties:

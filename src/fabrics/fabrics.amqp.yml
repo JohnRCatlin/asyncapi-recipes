@@ -91,7 +91,7 @@ channels:
       summary: Summary of this entity publish operation here...
       operationId: publishEntity
       traits:
-        - $ref: '#/components/operationTraits/amqp'
+        - $ref: '#/components/operationTraits/yourTriatName'
       message:
         $ref: '#/components/messages/entityWrapper'
         bindings:
@@ -136,7 +136,7 @@ channels:
       summary: Summary of this entity subscribe operation here ...
       operationId: subscribeEntity
       traits:
-        - $ref: '#/components/operationTraits/amqp'
+        - $ref: '#/components/operationTraits/yourTriatName'
       message:
         $ref: '#/components/messages/entityWrapper'
         bindings:
@@ -181,7 +181,7 @@ channels:
       summary: Summary of this command publish operation here...
       operationId: publishCommand
       traits:
-        - $ref: '#/components/operationTraits/amqp'
+        - $ref: '#/components/operationTraits/yourTriatName'
       message:
         $ref: '#/components/messages/commandWrapper'
         bindings:
@@ -226,7 +226,7 @@ channels:
       summary: Summary of this command subscribe operation here...
       operationId: subscribeCommand
       traits:
-        - $ref: '#/components/operationTraits/amqp'
+        - $ref: '#/components/operationTraits/yourTriatName'
       message:
         $ref: '#/components/messages/commandWrapper'
         bindings:
@@ -271,7 +271,7 @@ channels:
       summary: Summary of this EVENT publish operation here...
       operationId: publishEvent
       traits:
-        - $ref: '#/components/operationTraits/amqp'
+        - $ref: '#/components/operationTraits/yourTriatName'
       message:
         $ref: '#/components/messages/eventWrapper'
         bindings:
@@ -316,7 +316,7 @@ channels:
       summary: Summary of this EVENT subscribe operation here...
       operationId: subscribeEvent
       traits:
-        - $ref: '#/components/operationTraits/amqp'
+        - $ref: '#/components/operationTraits/yourTriatName'
       message:
         $ref: '#/components/messages/eventWrapper'
         bindings:
@@ -481,7 +481,7 @@ components:
             maximum: 100
 
   operationTraits:
-    amqp:
+    yourTriatName:
       bindings:
         amqp:
           userId: guest

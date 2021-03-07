@@ -284,7 +284,7 @@ components:
           bindingVersion: '0.1.0'
          
   messageBindings:
-    examlpeBinding:
+    exampleBinding:
       kafka:
         key:
           type: string

@@ -484,6 +484,7 @@ components:
     yourTriatName:
       bindings:
         amqp:
+          bindingVersion: 0.2.0
           userId: guest
 
   serverBindings:

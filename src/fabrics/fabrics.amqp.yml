@@ -116,13 +116,13 @@ channels:
       amqp:
         is: routingKey
         queue:
-          name: my-queue-name
+          name: your-queue-name
           durable: true
           exclusive: true
           autoDelete: false
           vhost: /
         exchange:
-          name: myExchange
+          name: your-exchange-name
           type: topic
           durable: true
           autoDelete: false
@@ -161,13 +161,13 @@ channels:
       amqp:
         is: routingKey
         queue:
-          name: my-queue-name
+          name: your-queue-name
           durable: true
           exclusive: true
           autoDelete: false
           vhost: /
         exchange:
-          name: myExchange
+          name: your-exchange-name
           type: topic
           durable: true
           autoDelete: false
@@ -206,13 +206,13 @@ channels:
       amqp:
         is: routingKey
         queue:
-          name: my-queue-name
+          name: your-queue-name
           durable: true
           exclusive: true
           autoDelete: false
           vhost: /
         exchange:
-          name: myExchange
+          name: your-exchange-name
           type: topic
           durable: true
           autoDelete: false
@@ -251,13 +251,13 @@ channels:
       amqp:
         is: routingKey
         queue:
-          name: my-queue-name
+          name: your-queue-name
           durable: true
           exclusive: true
           autoDelete: false
           vhost: /
         exchange:
-          name: myExchange
+          name: your-exchange-name
           type: topic
           durable: true
           autoDelete: false
@@ -296,13 +296,13 @@ channels:
       amqp:
         is: routingKey
         queue:
-          name: my-queue-name
+          name: your-queue-name
           durable: true
           exclusive: true
           autoDelete: false
           vhost: /
         exchange:
-          name: myExchange
+          name: your-exchange-name
           type: topic
           durable: true
           autoDelete: false
@@ -341,13 +341,13 @@ channels:
       amqp:
         is: routingKey
         queue:
-          name: my-queue-name
+          name: your-queue-name
           durable: true
           exclusive: true
           autoDelete: false
           vhost: /
         exchange:
-          name: myExchange
+          name: your-exchange-name
           type: topic
           durable: true
           autoDelete: false
@@ -475,7 +475,7 @@ components:
       headers:
         type: object
         properties:
-          my-app-header:
+          your-app-header:
             type: integer
             minimum: 0
             maximum: 100
@@ -496,13 +496,13 @@ components:
       amqp:
         is: routingKey
         queue:
-          name: my-queue-name
+          name: your-queue-name
           durable: true
           exclusive: true
           autoDelete: false
           vhost: /
         exchange:
-          name: myExchange
+          name: your-exchange-name
           type: topic
           durable: true
           autoDelete: false
@@ -542,7 +542,6 @@ components:
         contentEncoding: application/json
         messageType: 'entityWrapper'
         bindingVersion: 0.2.0  
-
 
 tags:
   - name: Catalog
